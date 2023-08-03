@@ -16,6 +16,12 @@ public class MinedCristalUI : MonoBehaviour
     private IEnumerator FadingAway()
     {
         yield return new WaitForSeconds(1);
-        transform.DOScale(0, 5).OnComplete(() => Destroy(gameObject));
+        float scale = 1;
+        while (scale > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1) * scale;
+            scale -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

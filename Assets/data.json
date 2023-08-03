@@ -1,0 +1,21 @@
+{
+    "StoreData": {
+        "BlueCristals": 0,
+        "RedCristals": 2,
+        "CoinsCristals": 0
+    },
+    "HangarData": {
+        "CurrentRobot": {
+            "HangarRobot": {
+                "instanceID": 24818
+            },
+            "Robot": {
+                "instanceID": 24820
+            },
+            "IsBought": false,
+            "MaxEnrgy": 0.0,
+            "MiningTime": 0.0,
+            "CristalCollectorCapacity": 0.0
+        }
+    }
+}

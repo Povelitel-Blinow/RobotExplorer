@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _value: 1
+  _timeToScaleDown: 1
 --- !u!65 &7112372132721946268
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -246,5 +247,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.076879725, y: 0.017476313, z: 0.033603337}
-  m_Center: {x: 0, y: 2.842172e-16, z: 0.014588486}
+  m_Size: {x: 0.076879725, y: 0.017476313, z: 0.035977084}
+  m_Center: {x: 0, y: 1.421086e-16, z: 0.015775368}

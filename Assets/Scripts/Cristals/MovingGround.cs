@@ -16,4 +16,9 @@ public class MovingGround : MonoBehaviour
             .SetEase(Ease.InOutSine)
             .SetLoops(-1, LoopType.Yoyo);
     }
+
+    private void OnDestroy()
+    {
+        transform.DOKill();
+    }
 }

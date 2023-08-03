@@ -6,6 +6,7 @@ public class HangarCamera : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _RobotCamera;
     [SerializeField] private CinemachineVirtualCamera _TracksCamera;
     [SerializeField] private CinemachineVirtualCamera _RotMotorCamera;
+    [SerializeField] private CinemachineVirtualCamera _CaseCamera;
 
     private void Start()
     {
@@ -32,10 +33,17 @@ public class HangarCamera : MonoBehaviour
 
     }
 
+    public void ShowCase()
+    {
+        TurnOff();
+        _CaseCamera.enabled = true;
+    }
+
     private void TurnOff()
     {
         _RobotCamera.enabled = false;
         _TracksCamera.enabled = false;
         _RotMotorCamera.enabled = false;
+        _CaseCamera.enabled = false;
     }
 }

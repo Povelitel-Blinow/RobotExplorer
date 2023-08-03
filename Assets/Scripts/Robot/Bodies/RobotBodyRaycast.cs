@@ -9,9 +9,12 @@ public class RobotBodyRaycast : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private LayerMask _groundAndCristalLayer;
 
+    [Header("Extra")]
+    [SerializeField] private bool _isFlyingBody;
+
     private Tracks _tracks;
 
-    public bool IsGrounded { get; private set; }
+    public bool IsGrounded { get; private set; } = true;
     public bool CanMoveForward { get; private set; }
     public bool CanMoveBackward { get; private set; }
     public Transform GroundSurface { get; private set; }
@@ -32,6 +35,10 @@ public class RobotBodyRaycast : MonoBehaviour
             IsGrounded = true;
             _tracks.LayDownTracks(hit.point);
             GroundSurface = hit.collider.transform;
+        }
+        else if(_isFlyingBody)
+        {
+            IsGrounded = true;
         }
         else
             IsGrounded = false;

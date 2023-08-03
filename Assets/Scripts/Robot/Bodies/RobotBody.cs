@@ -9,13 +9,13 @@ public abstract class RobotBody : MonoBehaviour
     [SerializeField] private GameObject _leadingBodyInd;
     [SerializeField] private Tracks _tracks;
 
-    [Header("Components")]
-    [SerializeField] private RobotBodyRaycast _bodyRaycast;
-
     [Header("Settings")]
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rotateSpeed;
-   
+
+    [Header("Components")]
+    [SerializeField] private RobotBodyRaycast _bodyRaycast;
+
     private bool _isCurrentLeadingBody;
     protected LinkingPart _linkingPart;
 
@@ -32,8 +32,7 @@ public abstract class RobotBody : MonoBehaviour
 
     public void Update()
     {
-
-        if(_isCurrentLeadingBody == false)
+        if (_isCurrentLeadingBody == false)
         {
             transform.position = _rotationMotor.transform.position;
         }
@@ -43,16 +42,19 @@ public abstract class RobotBody : MonoBehaviour
                 DieFromFalling();
             else
                 transform.parent = _bodyRaycast.GroundSurface;
+            
         }
     }
 
     private void DieFromFalling()
     {
+        Debug.Log("ONE");
         Die?.Invoke(Controller.DieCause.fall);
     }
 
     public void DieFromEnergyLack()
     {
+        Debug.Log("TWO");
         Die?.Invoke(Controller.DieCause.energyLack);
     }
 

@@ -4,6 +4,8 @@ public class Controller : MonoBehaviour
 {
     [SerializeField] private InputManager _inputManager;
     [SerializeField] private View _view;
+    [SerializeField] private CristallCollector _cristallCollector;
+
     private Robot _robot;
 
     public enum DieCause
@@ -37,7 +39,7 @@ public class Controller : MonoBehaviour
 
         if (minedCristal != null)
         {
-            
+            _cristallCollector.PutMinedCristal(minedCristal);
             _view.ShowMinedCristal(minedCristal);
         }
     }
@@ -45,6 +47,11 @@ public class Controller : MonoBehaviour
     public void CristallCollectorIsFull()
     {
         _view.CristallCollectorIsFull();
+    }
+
+    public void GameOver()
+    {
+        GameToMenuPort.EndGame(_cristallCollector);
     }
 
     public void Die(DieCause dieCause)

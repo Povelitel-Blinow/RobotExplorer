@@ -39,19 +39,8 @@ public class Robot : MonoBehaviour
         _mainBody.Die += controller.Die;
 
         CristallCollectorIsFull += controller.CristallCollectorIsFull;
-        _currentEnergy = _maxEnergy;
-    }
 
-    private void FixedUpdate()
-    {
-        _currentEnergy -= Time.fixedDeltaTime;
-
-        float percent = (_currentEnergy / _maxEnergy) * 100;
-        foreach(EnergyPanel e in _energyPanels)
-            e.SetEnergyLvl(percent);
-
-        if (percent <= 0)
-            _currentLeadingBody.DieFromEnergyLack();
+        StartCoroutine(WastingEnergy());
     }
 
     public void Move(float movement)
@@ -104,6 +93,24 @@ public class Robot : MonoBehaviour
             _currentChildBody = tmp;
             _currentChildBody.SetIsleadingBody(false);
         }
+    }
+
+    private IEnumerator WastingEnergy()
+    {
+        _currentEnergy = _maxEnergy;
+        
+        float percent = (_currentEnergy / _maxEnergy) * 100;
+        while (percent > 0)
+        {
+            yield return new WaitForFixedUpdate();
+            _currentEnergy -= Time.fixedDeltaTime;
+
+            foreach (EnergyPanel e in _energyPanels)
+                e.SetEnergyLvl(percent);
+
+            percent = (_currentEnergy / _maxEnergy) * 100;
+        }
+        _currentLeadingBody.DieFromEnergyLack();
     }
 
     private IEnumerator Mining()
